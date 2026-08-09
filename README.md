@@ -8,10 +8,10 @@ Acting as a BI Developer team, we designed a dimensional model iteratively acros
  
 The warehouse supports four business processes:
  
-- **Program Enrollment** — tracking students enrolling into programs
-- **Program Application** — tracking applicants from submission through selection, ranking, and invitation
-- **Course Registration** — tracking students registering for courses
-- **Program Course Management** — tracking which courses belong to which programs over time
+- **Program Enrollment** 
+- **Program Application** 
+- **Course Registration** 
+- **Program Course Management** 
 ## 🏗️ Methodology
  
 Design followed the standard four-step Kimball process for each business process:
@@ -23,30 +23,26 @@ Design followed the standard four-step Kimball process for each business process
 A **Prioritization Grid** (feasibility vs. business impact) and a **Bus Matrix** (processes × shared dimensions) were used to plan which processes to model first and to spot conformed dimensions across processes.
  
 ## 🧩 Fact Tables
- 
-| Process | Grain | Fact Type | Key Measures |
-|---|---|---|---|
-| Program Enrollment | One row per student, per program, per date | Transaction | Enrollment Count |
-| Program Application | One row per applicant, per program, per application date | Accumulating Snapshot | Selection/Ranking/Invitation Counts, Ranking Score, stage-to-stage date lags |
-| Course Registration | One row per student, per course, per date | Transaction | Registration Count |
-| Program Course Management | One row per course, per program, per date | Periodic Snapshot | Course Count |
- 
-The Program Application fact is an accumulating snapshot because a single application progresses through several milestone dates (application → selection → ranking → invitation), and we wanted one row that updates as it moves through the pipeline.
+
+* **Core Metrics:** Capture quantitative data for Program Applications, Enrollments, Course Registrations, and Program Management.
+* **Fact Types:** Utilize Transaction, Periodic Snapshot, and Accumulating Snapshot models to track both point-in-time events and multi-stage pipelines.
+* **Integration:** Connect seamlessly with relevant dimensions (Student, Program, Course, Date) to enable multidimensional analysis.
  
 ## 🧱 Dimension Tables
- 
-- **DimStudent / DimApplicant / DimStaff** — person dimensions. Identity number and name changes are tracked with **SCD Type 2**; contact details (phone, email, address) are overwritten with **SCD Type 1** since history isn't needed for those; biographical attributes like gender and birth date are **SCD Type 0** (fixed).
-- **DimProgram** — mostly static attributes (code, name, language, level, credits, delivery mode) as **SCD 0**; the linked program coordinator is **SCD 2** since coordinators change over time.
-- **DimCourse** — static descriptive attributes (**SCD 0**), linked to the offering organization.
-- **DimOrganization** — models the University → Faculty → Department → Unit hierarchy; each level has a "Head" staff role tracked as **SCD 2**.
-- **DimDate** — standard calendar attributes plus academic-year/semester fields (HT/VT terms), since the academic calendar doesn't align with the Gregorian year.
-- **Role-playing dimensions** (e.g. `DimProgramCoordinator`, `DimUniversityHead`, `DimUnitHead`) — views of `DimStaff` reused in different roles across fact tables.
-- **BridgeCourseToStaff** — a bridge table handling the many-to-many relationship between courses and coordinating staff, with SCD2-style effective/expiration dating.
+
+* **DimStudent / DimStaff** — Manage personal profiles and historical changes.
+* **DimProgram / DimCourse** — Store academic attributes and coordinator history.
+* **DimOrganization** — Model university hierarchy and leadership.
+* **DimDate** — Custom calendar for academic terms.
+* **Role-playing & Bridge Tables** — Handle complex many-to-many relationships and multiple staff roles.
 
  
-## 🛠️ Tools
- 
-- **draw.io** — Bus Matrix, Prioritization Grid, and dimensional model diagrams
+## 🛠️ Tools & Technologies
+* **draw.io** — Bus Matrix, Prioritization Grid, and dimensional model diagrams.
+* **Microsoft SSAS & Visual Studio** — Building OLAP cubes, dimensions, and partitions.
+* **MDX** — Querying multidimensional data.
+* **Power BI & Excel** — Data visualization and OLAP reporting.
+  
 ## 🤝 Project Collaboration
  
 This project was completed as a group assignment for the IS5 Data Warehousing course at Stockholm University. Team member names are omitted here for privacy.
