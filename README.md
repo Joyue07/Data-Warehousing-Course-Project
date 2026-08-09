@@ -1,6 +1,6 @@
 # Data Warehousing Project — University Case
  
-Dimensional modeling project for a fictitious higher-education case, built as part of the IS5 Data Warehousing course. The goal was to design a data warehouse that supports decision-making around academic programs, courses, and student registrations, following Kimball's dimensional modeling methodology.
+The goal was to design a data warehouse that supports decision-making around academic programs, courses, and student registrations, following Kimball's dimensional modeling methodology.
  
 ## 🎯 Project Overview
  
