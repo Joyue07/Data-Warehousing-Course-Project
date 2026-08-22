@@ -9,4 +9,9 @@ Transform the relational data warehouse into an **OLAP Cube** using **SSAS**, qu
 * **Data Visualization:** Connected the SSAS cube to **Power BI** (e.g., Waterfall charts for inventory fluctuations) and **Excel** PivotTables for dynamic multidimensional analysis.
 
 ## 📊 Visualizing the Insights
-*![Power BI Waterfall](powerbi_waterfall_chart.png)*
+
+### Power BI Inventory Waterfall Chart
+![Power BI Waterfall](powerbi_waterfall_chart.png)
+
+### KPI Monitoring in Excel
+![Excel KPI Dashboard](excel_kpi_dashboard.png)
