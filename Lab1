@@ -1,0 +1,33 @@
+# Lab 1 — Dimensional Modeling & Star Schema
+
+## 🎯 Objective
+
+The objective of this lab was to design and implement a basic **star schema** for product inventory analysis using **Microsoft SQL Server**.
+
+## 🏗️ Dimensional Model
+
+The star schema consists of:
+
+- **DimProduct** — Stores product-related attributes.
+- **DimDate** — Stores date-related attributes for time-based analysis.
+- **FactProductInventory** — Stores inventory measures at the product-date level.
+
+The fact table uses a composite primary key consisting of `ProductKey` and `DateKey`.
+
+## 🛠️ Implementation
+
+- Created an empty data warehouse database (`LabDW`) in **MS SQL Server**.
+- Created dimension and fact tables using SQL.
+- Defined primary keys and foreign key relationships between the fact and dimension tables.
+- Created and validated the star schema using **SQL Server Database Diagrams**.
+
+## 📊 Star Schema
+
+![Star Schema](screenshots/star-schema.png)
+
+## 💻 Technologies
+
+- **MS SQL Server**
+- **SQL**
+- **Dimensional Modeling**
+- **Star Schema**
